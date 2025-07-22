@@ -6,10 +6,7 @@ from schemas import PatientCreate, PatientUpdate, PatientResponse
 
 app = FastAPI()
 
-#create tables in database
 Base.metadata.create_all(bind = engine)
-
-# Dependency to get db session
 
 def get_db():
     db = SessionLocal()
@@ -27,12 +24,6 @@ def hello():
 @app.get("/about")
 def about():
     return {"message" : "A fully fuctional API to manage your patient records"}
-
-
-# @app.get("/view", response_model=list[PatientResponse])
-# def view(db:Session = Depends(get_db)):
-#     patients = db.query(Patient).all()
-#     return [PatientResponse.from_orm_patient(p) for p in patients]
 
 
 @app.get("/patient/{patient_id}", response_model=PatientResponse)
