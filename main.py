@@ -103,5 +103,3 @@ def delete_patient(patient_id: str, db: Session = Depends(get_db)):
     db.commit()
     return {"message": "Patient deleted successfully"}
 
-
-    
